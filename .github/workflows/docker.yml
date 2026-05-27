@@ -70,10 +70,10 @@ jobs:
         if: ${{ github.ref == 'refs/heads/latest' }}
         run: |
           docker run -d --pull always --platform amd64 --name valkey-x86_64 ${{ steps.un.outputs.un }}/${{ github.event.repository.name }}:${{ github.ref_name }}
-          docker cp valkey-x86_64:/usr/local/bin/valkey-server valkey-cli-x86_64
+          docker cp valkey-x86_64:/usr/local/bin/valkey-cli valkey-cli-x86_64
           docker cp valkey-x86_64:/usr/local/bin/valkey-server valkey-server-x86_64
           docker run -d --pull always --platform arm64 --name valkey-aarch64 ${{ steps.un.outputs.un }}/${{ github.event.repository.name }}:${{ github.ref_name }}
-          docker cp valkey-aarch64:/usr/local/bin/valkey-server valkey-cli-aarch64
+          docker cp valkey-aarch64:/usr/local/bin/valkey-cli valkey-cli-aarch64
           docker cp valkey-aarch64:/usr/local/bin/valkey-server valkey-server-aarch64
       - uses: actions/upload-artifact@v7.0.1
         if: ${{ github.ref == 'refs/heads/latest' }}
